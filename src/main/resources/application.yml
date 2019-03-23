@@ -1,0 +1,8 @@
+spring:
+  jpa:
+    generate-ddl: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/demo
+    # Credentials will be injected by Vault! :)
+    # username=springuser
+    # password=ThePassword

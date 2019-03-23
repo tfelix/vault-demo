@@ -1,0 +1,29 @@
+# bootstrap.yml
+spring:
+  application:
+    name: demo
+  cloud:
+    vault:
+      host: localhost
+      port: 8200
+      scheme: http
+      authentication: TOKEN
+      token: 00000000-0000-0000-0000-000000000000 # Could be injected as e.g. ENV_VAR
+      # Best practice would be to use SSL with a certificate auth.
+      # But for sake of simplicity this is omitted in the demo
+      # ssl:
+      #  trust-store: classpath:/vault.jks
+      #  trust-store-password: changeit
+      # other vault properties omitted ...
+      generic: # v1 key-value store without versioning. Otherwise use kv
+        enabled: true
+        application-name: demo
+        backend: secret
+      database:
+        enabled: true
+        # https://www.vaultproject.io/docs/secrets/databases/index.html
+        role: demo-database
+        backend: database
+        # Tells spring in which property to story the Vault data
+        username-property: spring.datasource.username
+        password-property: spring.datasource.password
